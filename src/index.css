@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Professional Portfolio Design System 
+All colors MUST be HSL. Inspired by professional developer portfolios.
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Clean and professional */
+    --background: 0 0% 100%;
+    --foreground: 214 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 214 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 15% 20%;
+
+    /* Primary - Modern blue inspired by tech/developer sites */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 70%;
+
+    /* Secondary - Subtle gray for cards and sections */
+    --secondary: 220 13% 97%;
+    --secondary-foreground: 214 15% 25%;
+
+    --muted: 220 13% 95%;
+    --muted-foreground: 215 15% 50%;
+
+    /* Accent - Complementary purple for highlights */
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+
+    /* Professional gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220 13% 98%) 0%, hsl(220 13% 95%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220 13% 97%) 0%, hsl(0 0% 100%) 100%);
+
+    /* Professional shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(217 91% 60% / 0.1);
+    --shadow-medium: 0 4px 20px -4px hsl(217 91% 60% / 0.15);
+    --shadow-large: 0 10px 40px -10px hsl(217 91% 60% / 0.2);
+
+    /* Smooth transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode for professional portfolio */
+    --background: 214 32% 7%;
+    --foreground: 220 13% 95%;
+
+    --card: 214 32% 9%;
+    --card-foreground: 220 13% 95%;
+
+    --popover: 214 32% 9%;
+    --popover-foreground: 220 13% 95%;
+
+    --primary: 217 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 75%;
+
+    --secondary: 214 32% 12%;
+    --secondary-foreground: 220 13% 90%;
+
+    --muted: 214 32% 12%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 262 83% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 18%;
+    --input: 214 32% 18%;
+    --ring: 217 91% 65%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 65%) 0%, hsl(262 83% 65%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(214 32% 8%) 0%, hsl(214 32% 12%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(214 32% 9%) 0%, hsl(214 32% 7%) 100%);
+
+    /* Dark mode shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-large: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Smooth scrolling for modern feel */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/80;
+  }
+}
+
+@layer components {
+  /* Professional button styles using design system */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-[var(--shadow-soft)] transition-[var(--transition)];
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border shadow-[var(--shadow-soft)] transition-[var(--transition)];
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 shadow-[var(--shadow-soft)] transition-[var(--transition)];
+  }
+
+  /* Professional card styles */
+  .card-professional {
+    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transition-[var(--transition)];
+  }
+
+  .card-gradient {
+    background: var(--gradient-subtle);
+    @apply border border-border rounded-xl shadow-[var(--shadow-medium)] transition-[var(--transition)];
+  }
+
+  /* Section styles */
+  .section-padding {
+    @apply py-20 px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Typography styles using design system */
+  .heading-xl {
+    @apply text-4xl lg:text-6xl font-bold text-foreground leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl lg:text-4xl font-bold text-foreground leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl lg:text-3xl font-semibold text-foreground leading-tight;
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
