@@ -63,6 +63,11 @@ const resources = {
             introvideo:' Mobile Application: Quiz Game with Correctio',
             descriptionVideo:'Explore My Projects in Action'
         },
+        competitions:{
+            title: 'Competitions',
+            description: 'Discover all the competitions I have participated in.'
+
+        },
       // Skills Section
       skills: {
         title: 'Technical Skills',
@@ -168,6 +173,11 @@ const resources = {
             description:'ine Auswahl von Projekten, die mein technisches Fachwissen und meine Kreativität demonstrieren.',
             introvideo:' Mobile Anwendung: Quizspiel mit Korrekturfunktion',
             descriptionVideo:'Entdecken Sie meine Arbeiten in Aktion'
+        },
+        competitions:{
+            title: 'Wettbewerbe',
+            description: 'Entdecken Sie alle Wettbewerbe, an denen ich teilgenommen habe.'
+
         },
       skills: {
         title: 'Fähigkeiten',
@@ -275,6 +285,11 @@ const resources = {
             description:'Une sélection de projets qui démontrent mon expertise technique et ma créativité',
             introvideo:' application mobile Quizgame',
             descriptionVideo:'Découvrez mes réalisations en action'
+        },
+        competitions:{
+            title: 'Compétitions',
+            description: 'Découvrez toutes les compétitions auxquelles j\'ai participé.'
+
         },
       // Skills Section
       skills: {

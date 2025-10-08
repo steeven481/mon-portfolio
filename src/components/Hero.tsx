@@ -61,8 +61,8 @@ const Hero = () => {
                         {/* Contact Info */}
                         <div className="space-y-3 text-sm text-muted-foreground">
                             <div className="flex items-center justify-center lg:justify-start gap-2">
-                                <MapPin className="w-4 h-4 text-primary" />
-                                <span>{t('hero.location')}</span>
+                                {/*<MapPin className="w-4 h-4 text-primary" />*/}
+                                {/*<span>{t('hero.location')}</span>*/}
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-start gap-2 sm:gap-6">
                                 <div className="flex items-center gap-2">

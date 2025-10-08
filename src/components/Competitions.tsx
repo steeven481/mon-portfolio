@@ -119,9 +119,9 @@ const Competitions = () => {
     <section id="competitions" className="section-padding">
       <div className="container-wide">
         <div className="text-center mb-16">
-          <h2 className="heading-lg mb-6">{t('competitionsTitle')}</h2>
+          <h2 className="heading-lg mb-6">{t('competitions.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            {t('competitionsDescription')}
+            {t('competitions.description')}
           </p>
         </div>
 

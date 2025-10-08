@@ -181,9 +181,14 @@ const Projects = () => {
             status: "School project",
             users: "0",
             images: [
-                "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+                "/projets/projets16.png",
+                "/projets/projets17.png",
+                "/projets/projets18.png",
+                "/projets/projets19.png",
+                "/projets/projets20.png",
+                "/projets/projets21.png",
+                "/projets/projets22.png",
+                "/projets/projets23.png",
             ],
             demoUrl: "https://demo.smartcity.gov",
             githubUrl: "https://github.com/yourname/smartcity"
