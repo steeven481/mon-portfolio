@@ -39,6 +39,7 @@ const Skills = () => {
         { name: "React.js & Next.js", level: t('skills.levels.beginner') },
         { name: "TypeScript", level: t('skills.levels.advanced') },
         { name: "Node.js & Express", level: t('skills.levels.advanced') },
+          { name: "SpringBoot(java)", level: t('skills.levels.advanced') },
       ]
     },
     {
