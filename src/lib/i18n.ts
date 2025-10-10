@@ -68,6 +68,9 @@ const resources = {
             description: 'Discover all the competitions I have participated in.'
 
         },
+        information:{
+            title:'Click to see details.',
+        },
       // Skills Section
       skills: {
         title: 'Technical Skills',
@@ -178,6 +181,9 @@ const resources = {
             title: 'Wettbewerbe',
             description: 'Entdecken Sie alle Wettbewerbe, an denen ich teilgenommen habe.'
 
+        },
+        information:{
+            title:'Klicken Sie, um Details anzuzeigen.',
         },
       skills: {
         title: 'Fähigkeiten',
@@ -290,6 +296,9 @@ const resources = {
             title: 'Compétitions',
             description: 'Découvrez toutes les compétitions auxquelles j\'ai participé.'
 
+        },
+        information:{
+          title:'Cliquez pour voir les détails',
         },
       // Skills Section
       skills: {

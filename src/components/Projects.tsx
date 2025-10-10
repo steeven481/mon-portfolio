@@ -5,11 +5,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Play, ExternalLink, Github, Calendar, Users, Code2, Target } from 'lucide-react';
+import { Play, ExternalLink, Github, Calendar, Users, Code2, Target, MousePointerClick } from 'lucide-react';
 
 const Projects = () => {
     const { t } = useTranslation();
     const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [showClickHint, setShowClickHint] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -19,6 +20,13 @@ const Projects = () => {
                 console.log('Autoplay prevented:', error);
             });
         }
+
+        // Masquer l'indice après 5 secondes
+        const timer = setTimeout(() => {
+            setShowClickHint(false);
+        }, 300000);
+
+        return () => clearTimeout(timer);
     }, []);
 
     const projects = [
@@ -222,6 +230,11 @@ const Projects = () => {
         },
     ];
 
+    const handleCardClick = (project: any) => {
+        setSelectedProject(project);
+        setShowClickHint(false); // Masquer l'indice après le premier clic
+    };
+
     return (
         <section id="projects" className="section-padding bg-secondary/20">
             <div className="container-wide">
@@ -261,62 +274,106 @@ const Projects = () => {
                     </div>
                 </div>
 
-                {/* Projects Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {projects.map((project) => (
-                        <Card
-                            key={project.id}
-                            className="card-professional p-6 cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg group"
-                            onClick={() => setSelectedProject(project)}
-                        >
-                            <div className="space-y-4">
-                                <div className="flex items-start justify-between">
-                                    <Badge variant="secondary" className="shrink-0 text-xs">
-                                        {project.category}
-                                    </Badge>
-                                    <div className="flex gap-1">
-                                        <div className={`w-2 h-2 rounded-full ${
-                                            project.status === 'School project' ? 'bg-green-500' :
-                                                project.status === 'hackathon project' ? 'bg-yellow-500' : 'bg-blue-500'
-                                        }`}></div>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-muted-foreground text-sm line-clamp-3">
-                                        {project.description}
-                                    </p>
-                                </div>
-
-                                <div className="flex flex-wrap gap-1">
-                                    {project.technologies.slice(0, 3).map((tech) => (
-                                        <Badge key={tech} variant="outline" className="text-xs">
-                                            {tech}
-                                        </Badge>
-                                    ))}
-                                    {project.technologies.length > 3 && (
-                                        <Badge variant="outline" className="text-xs">
-                                            +{project.technologies.length - 3}
-                                        </Badge>
-                                    )}
-                                </div>
-
-                                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                                    <div className="flex items-center gap-1">
-                                        <Users className="w-3 h-3" />
-                                        <span>{project.users}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <Calendar className="w-3 h-3" />
-                                        <span>{project.endDate.slice(0, 4)}</span>
-                                    </div>
+                <div className="relative">
+                    {/* Indice de clic animé */}
+                    {showClickHint && (
+                        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
+                            <div className="flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-4 py-2 border border-primary/20 animate-bounce">
+                                <MousePointerClick className="w-4 h-4 text-primary" />
+                                <span className="text-sm font-medium text-primary">
+                                    {t('information.title')}
+                                </span>
+                                <div className="flex space-x-1">
+                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse"></div>
+                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                                 </div>
                             </div>
-                        </Card>
-                    ))}
+                        </div>
+                    )}
+
+                    {/* Projects Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {projects.map((project, index) => (
+                            <div key={project.id} className="relative">
+                                {/* Animation d'apparition pour chaque carte */}
+                                <Card
+                                    className="card-professional p-6 cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg group animate-in fade-in slide-in-from-bottom-4"
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                    onClick={() => handleCardClick(project)}
+                                >
+                                    {/* Indicateur de clic sur la carte */}
+                                    {showClickHint && (
+                                        <div className="absolute -top-2 -right-2">
+                                            <div className="relative">
+                                                <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center animate-ping opacity-75">
+                                                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                                                </div>
+                                                <div className="absolute top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                                                    <MousePointerClick className="w-3 h-3 text-white" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="space-y-4">
+                                        <div className="flex items-start justify-between">
+                                            <Badge variant="secondary" className="shrink-0 text-xs">
+                                                {project.category}
+                                            </Badge>
+                                            <div className="flex gap-1">
+                                                <div className={`w-2 h-2 rounded-full ${
+                                                    project.status === 'School project' ? 'bg-green-500' :
+                                                        project.status === 'hackathon project' ? 'bg-yellow-500' : 'bg-blue-500'
+                                                }`}></div>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                                                {project.title}
+                                            </h3>
+                                            <p className="text-muted-foreground text-sm line-clamp-3">
+                                                {project.description}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex flex-wrap gap-1">
+                                            {project.technologies.slice(0, 3).map((tech) => (
+                                                <Badge key={tech} variant="outline" className="text-xs">
+                                                    {tech}
+                                                </Badge>
+                                            ))}
+                                            {project.technologies.length > 3 && (
+                                                <Badge variant="outline" className="text-xs">
+                                                    +{project.technologies.length - 3}
+                                                </Badge>
+                                            )}
+                                        </div>
+
+                                        <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                            <div className="flex items-center gap-1">
+                                                <Users className="w-3 h-3" />
+                                                <span>{project.users}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <Calendar className="w-3 h-3" />
+                                                <span>{project.endDate.slice(0, 4)}</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Indicateur subtil au survol */}
+                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-2">
+                                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                                <MousePointerClick className="w-3 h-3" />
+                                                <span>Voir les détails du projet</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Project Detail Modal */}
