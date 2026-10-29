@@ -1,34 +1,58 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Calendar, MapPin, GraduationCap, BookOpen, MousePointerClick } from 'lucide-react';
+import { Calendar, MapPin, GraduationCap, BookOpen, Award, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+interface EducationItem {
+  id: string;
+  degreeKey: string;
+  institutionKey: string;
+  locationKey: string;
+  startDate: string;
+  endDate: string;
+  specialtyKey: string;
+  descriptionKey: string;
+  learnedKey: string;
+  achievementsKey: string;
+  isCurrent?: boolean;
+  images: string[];
+}
 
 const Education = () => {
     const { t } = useTranslation();
-    const [selectedEducation, setSelectedEducation] = useState<any>(null);
-    const [showClickHint, setShowClickHint] = useState(true);
+    const [selectedEducation, setSelectedEducation] = useState<EducationItem | null>(null);
+    const [sectionRef, isSectionVisible] = useScrollAnimation({ triggerOnce: true });
 
-    const educations = [
+    const educations: EducationItem[] = [
         {
-            id: 1,
-            degree: "Final year of Computer Engineering program",
-            institution: "University of Belfort-Montbéliard (France)",
-            location: "Belfort, France",
+            id: "gem",
+            degreeKey: "education.gem.degree",
+            institutionKey: "education.gem.institution",
+            locationKey: "education.gem.location",
+            startDate: "2026-09",
+            endDate: "Present",
+            specialtyKey: "education.gem.specialty",
+            descriptionKey: "education.gem.description",
+            learnedKey: "education.gem.learned",
+            achievementsKey: "education.gem.achievements",
+            isCurrent: true,
+            images: []
+        },
+        {
+            id: "utbm",
+            degreeKey: "education.utbm.degree",
+            institutionKey: "education.utbm.institution",
+            locationKey: "education.utbm.location",
             startDate: "2023-08",
             endDate: "2026-02",
-            specialty: "Computer Vision",
-            description: "Comprehensive education in Software Engineering, specialized in Artificial Intelligence (Computer Vision). Final-year capstone project: Autonomous Object Rearrangement with the Tiago Robot (Gazebo Simulation).",
-            learned: [
-                "Practical experience in Image Processing using OpenCV",
-                "Mobile Robotics and Automation Control",
-                "Intelligence artificielle et machine learning appliqués",
-                "Applied AI and Machine Learning",
-                "Shape Recognition and Vision-Based Control"
-            ],
-            achievements: [],
+            specialtyKey: "education.utbm.specialty",
+            descriptionKey: "education.utbm.description",
+            learnedKey: "education.utbm.learned",
+            achievementsKey: "education.utbm.achievements",
             images: [
                 "/education/education7.svg",
                 "/education/education8.jpeg",
@@ -36,25 +60,16 @@ const Education = () => {
             ]
         },
         {
-            id: 2,
-            degree: "Computer Engineering, 3rd and 4th years of study",
-            institution: "Institut universitaire saint jean",
-            location: "Yaounde, Cameroun",
+            id: "saintjean",
+            degreeKey: "education.saintjean.degree",
+            institutionKey: "education.saintjean.institution",
+            locationKey: "education.saintjean.location",
             startDate: "2023-09",
             endDate: "2025-05",
-            specialty: "Information Systems and Networks",
-            description: "Comprehensive foundation in computer science, including development, systems, and networking. Strong skills in programming and data management.",
-            learned: [
-                "Object-Oriented Programming (Java, C++, Python)",
-                "Relational Databases and Advanced SQL",
-                "Advanced Software Architectures and Design Patterns",
-                "Development of Native and Cross-Platform Mobile Applications",
-                "Technical Project Management and Agile Methodologies",
-                "Computer Networks and Communication Protocols",
-                "Algorithms and Optimized Data Structures",
-                "System Administration on Linux and Windows Server"
-            ],
-            achievements: ["Strong academic performance", "International experience / mobility", "Recognized among the best student projects"],
+            specialtyKey: "education.saintjean.specialty",
+            descriptionKey: "education.saintjean.description",
+            learnedKey: "education.saintjean.learned",
+            achievementsKey: "education.saintjean.achievements",
             images: [
                 "/education/education4.jpeg",
                 "/education/education6.jpeg",
@@ -62,239 +77,239 @@ const Education = () => {
             ]
         },
         {
-            id: 3,
-            degree: "Physics bachelor's degree",
-            institution: "University of Dschang",
-            location: "Dchang, Cameroun",
+            id: "dschang",
+            degreeKey: "education.dschang.degree",
+            institutionKey: "education.dschang.institution",
+            locationKey: "education.dschang.location",
             startDate: "2020-10",
             endDate: "2023-08",
-            specialty: "Mathematics, Physical Sciences, Electronics and automation",
-            description: "I did two years of a common core curriculum where the core subjects were advanced-level mathematics and physics. In my third year, I specialized in EEA (Electronics, Electrical Engineering, and Automation).",
-            learned: [
-                "Advanced Mathematics and Numerical Analysis",
-                "Fundamental Physics and Basic Electronics",
-                "Scientific Methodology and Analytical Thinking",
-                "Languages: French, English (bilingual)",
-                "Basic Algorithms and Introduction to Programming"
-            ],
-            achievements: ["Distinction", "one of the best projects"],
+            specialtyKey: "education.dschang.specialty",
+            descriptionKey: "education.dschang.description",
+            learnedKey: "education.dschang.learned",
+            achievementsKey: "education.dschang.achievements",
             images: [
                 "/education/education1.png",
                 "/education/education2.png",
                 "/education/education3.jpeg"
             ]
         }
-
     ];
 
-    // Masquer l'indice après 5 secondes ou après le premier clic
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowClickHint(false);
-        }, 300000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleCardClick = (education: any) => {
-        setSelectedEducation(education);
-        setShowClickHint(false); // Masquer l'indice après le premier clic
-    };
-
     return (
-        <section id="education" className="section-padding">
-            <div className="container-wide">
-                <div className="text-center mb-16">
-                    <h2 className="heading-lg mb-6">{t('education.title')}</h2>
-                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                        {t('education.description')}
-                    </p>
-                </div>
+        <section id="education" className="section-padding bg-secondary/30 relative overflow-hidden">
+            {/* Background lighting */}
+            <div className="absolute top-1/3 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-10 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-                <div className="relative">
-                    {/* Indice de clic animé */}
-                    {showClickHint && (
-                        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
-                            <div className="flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-4 py-2 border border-primary/20 animate-bounce">
-                                <MousePointerClick className="w-4 h-4 text-primary" />
-                                <span className="text-sm font-medium text-primary">
-                   {t('information.title')}
-                </span>
-                                <div className="flex space-x-1">
-                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse"></div>
-                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                                    <div className="w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                                </div>
-                            </div>
+            <div className="container-wide relative z-10">
+                <div
+                    ref={sectionRef}
+                    className={`transition-all duration-1000 ${
+                        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                >
+                    {/* Section Header */}
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-4">
+                            <GraduationCap className="w-3.5 h-3.5" />
+                            <span>{t('education.title')}</span>
                         </div>
-                    )}
+                        <h2 className="heading-lg mb-4">{t('education.subtitle')}</h2>
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                            {t('education.description')}
+                        </p>
+                    </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {educations.map((education, index) => (
-                            <div key={education.id} className="relative">
-                                {/* Animation d'apparition pour chaque carte */}
+                    {/* Education Cards Grid */}
+                    <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+                        {educations.map((edu, index) => {
+                            const achievements = (t(edu.achievementsKey, { returnObjects: true }) as string[]) || [];
+
+                            return (
                                 <Card
-                                    className="card-professional p-6 cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg group animate-in fade-in slide-in-from-bottom-4"
-                                    style={{ animationDelay: `${index * 150}ms` }}
-                                    onClick={() => handleCardClick(education)}
+                                    key={edu.id}
+                                    onClick={() => setSelectedEducation(edu)}
+                                    className={`card-professional p-6 sm:p-7 cursor-pointer hover:scale-[1.02] transition-all duration-300 group border-border/60 relative overflow-hidden ${
+                                        edu.isCurrent ? 'ring-2 ring-primary/40 bg-card/95' : ''
+                                    }`}
                                 >
-                                    {/* Indicateur de clic sur la carte */}
-                                    {showClickHint && (
-                                        <div className="absolute -top-2 -right-2">
-                                            <div className="relative">
-                                                <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center animate-ping opacity-75">
-                                                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                                                </div>
-                                                <div className="absolute top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
-                                                    <MousePointerClick className="w-3 h-3 text-white" />
-                                                </div>
+                                    {/* Current Badge Glow */}
+                                    {edu.isCurrent && (
+                                        <div className="absolute top-0 right-0">
+                                            <div className="bg-primary text-primary-foreground text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl tracking-wider shadow-sm flex items-center gap-1">
+                                                <Sparkles className="w-3 h-3" />
+                                                <span>Actuel</span>
                                             </div>
                                         </div>
                                     )}
 
                                     <div className="space-y-4">
-                                        <div className="flex items-start justify-between">
-                                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                                                <GraduationCap className="w-6 h-6 text-primary" />
+                                        {/* Icon & Period */}
+                                        <div className="flex items-start justify-between gap-3">
+                                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                                <GraduationCap className="w-6 h-6" />
                                             </div>
-                                            <Badge variant="secondary" className="shrink-0">
-                                                {education.endDate.slice(0, 4)}
+                                            <Badge variant="secondary" className="font-semibold text-xs px-2.5 py-0.5 rounded-full">
+                                                {edu.startDate.slice(0, 4)} — {edu.endDate === 'Present' ? 'En cours' : edu.endDate.slice(0, 4)}
                                             </Badge>
                                         </div>
 
-                                        <div className="space-y-2">
-                                            <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-                                                {education.degree}
+                                        {/* Degree & Institution */}
+                                        <div>
+                                            <h3 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors leading-snug">
+                                                {t(edu.degreeKey)}
                                             </h3>
-                                            <p className="text-primary font-medium">{education.institution}</p>
-                                        </div>
-
-                                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                                            <div className="flex items-center gap-1">
-                                                <Calendar className="w-4 h-4" />
-                                                <span>{education.startDate.slice(0, 4)} - {education.endDate.slice(0, 4)}</span>
-                                            </div>
-                                            <div className="flex items-center gap-1">
-                                                <MapPin className="w-4 h-4" />
-                                                <span>{education.location}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <p className="text-sm font-medium text-accent">{education.specialty}</p>
-                                            <p className="text-muted-foreground text-sm line-clamp-3">
-                                                {education.description}
+                                            <p className="text-primary font-semibold text-sm sm:text-base mt-1">
+                                                {t(edu.institutionKey)}
                                             </p>
                                         </div>
 
-                                        <div className="flex flex-wrap gap-2">
-                                            {education.achievements.slice(0, 2).map((achievement) => (
-                                                <Badge key={achievement} variant="outline" className="text-xs">
-                                                    {achievement}
-                                                </Badge>
-                                            ))}
-                                            {education.achievements.length > 2 && (
-                                                <Badge variant="outline" className="text-xs">
-                                                    +{education.achievements.length - 2}
-                                                </Badge>
-                                            )}
+                                        {/* Meta */}
+                                        <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-muted-foreground">
+                                            <div className="flex items-center gap-1.5">
+                                                <Calendar className="w-3.5 h-3.5 text-primary" />
+                                                <span>{edu.startDate.slice(0, 7)} → {edu.endDate === 'Present' ? 'Présent' : edu.endDate.slice(0, 7)}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <MapPin className="w-3.5 h-3.5 text-accent" />
+                                                <span>{t(edu.locationKey)}</span>
+                                            </div>
                                         </div>
 
-                                        {/* Indicateur subtil au survol */}
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-2">
-                                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                                <MousePointerClick className="w-3 h-3" />
-                                                <span>Voir le parcours académique</span>
+                                        {/* Specialty & Description */}
+                                        <div className="space-y-2 pt-1">
+                                            <div className="inline-block px-2.5 py-1 rounded-md bg-secondary/80 text-xs font-semibold text-primary">
+                                                {t(edu.specialtyKey)}
                                             </div>
+                                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                                                {t(edu.descriptionKey)}
+                                            </p>
+                                        </div>
+
+                                        {/* Achievements pills */}
+                                        {achievements.length > 0 && (
+                                            <div className="flex flex-wrap gap-1.5 pt-1">
+                                                {achievements.slice(0, 2).map((item, idx) => (
+                                                    <Badge key={idx} variant="outline" className="text-[11px] font-medium border-border/70">
+                                                        {item}
+                                                    </Badge>
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {/* Footer action */}
+                                        <div className="flex items-center justify-between pt-3 border-t border-border/40 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform">
+                                            <span>{t('education.viewDetails')}</span>
+                                            <ArrowRight className="w-3.5 h-3.5" />
                                         </div>
                                     </div>
                                 </Card>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* Education Detail Modal */}
+                {/* Detail Modal */}
                 <Dialog open={!!selectedEducation} onOpenChange={() => setSelectedEducation(null)}>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-6 sm:p-8">
                         <DialogTitle className="sr-only">
-                            {selectedEducation?.degree}
+                            {selectedEducation ? t(selectedEducation.degreeKey) : "Formation"}
                         </DialogTitle>
+                        <DialogDescription className="sr-only">
+                            Détails de la formation académique
+                        </DialogDescription>
+
                         {selectedEducation && (
-                            <div className="grid md:grid-cols-2 gap-8">
-                                {/* Left: Image Carousel */}
-                                <div className="space-y-4">
-                                    <Carousel className="w-full">
-                                        <CarouselContent>
-                                            {selectedEducation.images.map((image: string, index: number) => (
-                                                <CarouselItem key={index}>
-                                                    <div className="aspect-video rounded-lg overflow-hidden">
-                                                        <img
-                                                            src={image}
-                                                            alt={`${selectedEducation.institution} - Image ${index + 1}`}
-                                                            className="w-full h-full object-cover"
-                                                        />
-                                                    </div>
-                                                </CarouselItem>
-                                            ))}
-                                        </CarouselContent>
-                                        <CarouselPrevious />
-                                        <CarouselNext />
-                                    </Carousel>
+                            <div className="space-y-6">
+                                {/* Header */}
+                                <div>
+                                    <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                                        <Badge variant="secondary" className="font-bold text-xs px-3 py-1 rounded-full">
+                                            {selectedEducation.startDate} → {selectedEducation.endDate === 'Present' ? 'Présent' : selectedEducation.endDate}
+                                        </Badge>
+                                        <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                                            <MapPin className="w-4 h-4 text-accent" />
+                                            {t(selectedEducation.locationKey)}
+                                        </span>
+                                    </div>
+
+                                    <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+                                        {t(selectedEducation.degreeKey)}
+                                    </h3>
+                                    <p className="text-lg font-bold text-primary mt-1">
+                                        {t(selectedEducation.institutionKey)}
+                                    </p>
                                 </div>
 
-                                {/* Right: Details */}
-                                <div className="space-y-6">
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-2">{selectedEducation.degree}</h3>
-                                        <p className="text-primary font-semibold text-lg">{selectedEducation.institution}</p>
+                                {/* Image carousel if available */}
+                                {selectedEducation.images.length > 0 && (
+                                    <div className="pt-2">
+                                        <Carousel className="w-full">
+                                            <CarouselContent>
+                                                {selectedEducation.images.map((img, idx) => (
+                                                    <CarouselItem key={idx}>
+                                                        <div className="aspect-video rounded-xl overflow-hidden border border-border/60 bg-muted/20">
+                                                            <img 
+                                                                src={img} 
+                                                                alt={`${t(selectedEducation.institutionKey)} image ${idx + 1}`}
+                                                                className="w-full h-full object-cover" 
+                                                            />
+                                                        </div>
+                                                    </CarouselItem>
+                                                ))}
+                                            </CarouselContent>
+                                            <CarouselPrevious className="left-2" />
+                                            <CarouselNext className="right-2" />
+                                        </Carousel>
                                     </div>
+                                )}
 
-                                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                                        <div className="flex items-center gap-2">
-                                            <Calendar className="w-4 h-4" />
-                                            <span>{selectedEducation.startDate} - {selectedEducation.endDate}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <MapPin className="w-4 h-4" />
-                                            <span>{selectedEducation.location}</span>
-                                        </div>
-                                    </div>
+                                {/* Specialty & Description */}
+                                <div className="space-y-2">
+                                    <h4 className="text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                                        <BookOpen className="w-4 h-4 text-primary" />
+                                        <span>Spécialité & Programme</span>
+                                    </h4>
+                                    <p className="text-sm font-semibold text-primary">
+                                        {t(selectedEducation.specialtyKey)}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        {t(selectedEducation.descriptionKey)}
+                                    </p>
+                                </div>
 
-                                    <div>
-                                        <h4 className="font-semibold mb-2 flex items-center gap-2">
-                                            <BookOpen className="w-4 h-4" />
-                                            {t('specialty')}
+                                {/* Learned Skills */}
+                                <div className="space-y-3">
+                                    <h4 className="text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                                        <span>{t('education.learnedTitle')}</span>
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {((t(selectedEducation.learnedKey, { returnObjects: true }) as string[]) || []).map((skill, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                                                <span>{skill}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Achievements */}
+                                {((t(selectedEducation.achievementsKey, { returnObjects: true }) as string[]) || []).length > 0 && (
+                                    <div className="space-y-2.5 pt-2">
+                                        <h4 className="text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                                            <Award className="w-4 h-4 text-accent" />
+                                            <span>{t('education.distinctionsTitle')}</span>
                                         </h4>
-                                        <p className="text-accent font-medium mb-3">{selectedEducation.specialty}</p>
-                                        <p className="text-muted-foreground leading-relaxed">
-                                            {selectedEducation.description}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h4 className="font-semibold mb-3">{t('learned')}</h4>
-                                        <ul className="space-y-2">
-                                            {selectedEducation.learned.map((item: string, index: number) => (
-                                                <li key={index} className="flex items-start gap-2">
-                                                    <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
-                                                    <span className="text-muted-foreground text-sm">{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div>
-                                        <h4 className="font-semibold mb-3">Distinctions</h4>
                                         <div className="flex flex-wrap gap-2">
-                                            {selectedEducation.achievements.map((achievement: string) => (
-                                                <Badge key={achievement} variant="secondary">
-                                                    {achievement}
+                                            {((t(selectedEducation.achievementsKey, { returnObjects: true }) as string[]) || []).map((item, idx) => (
+                                                <Badge key={idx} variant="secondary" className="text-xs font-semibold px-3 py-1 rounded-lg">
+                                                    {item}
                                                 </Badge>
                                             ))}
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         )}
                     </DialogContent>

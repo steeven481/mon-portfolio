@@ -3,15 +3,15 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
-  Smartphone, 
+  Workflow, 
+  Bot, 
   Globe, 
-  Cloud, 
-  Network, 
-  Palette, 
-  Database,
-  Code2,
-  Cpu,
-  Sparkles
+  Database, 
+  Cpu, 
+  Wrench, 
+  Sparkles,
+  CheckCircle2,
+  Terminal
 } from "lucide-react";
 
 const Skills = () => {
@@ -20,69 +20,79 @@ const Skills = () => {
   
   const skillCategories = [
     {
-      icon: Smartphone,
-      title: t('skills.categories.mobile'),
-      color: "text-blue-500",
+      icon: Workflow,
+      title: t('skills.categories.pm'),
+      color: "text-blue-500 bg-blue-500/10",
       skills: [
-          { name: "Ionic", level: t('skills.levels.advanced') },
-        { name: "Flutter & Dart", level: t('skills.levels.beginner') },
-        { name: "React Native", level: t('skills.levels.beginner') },
-        { name: "Kotlin", level: t('skills.levels.beginner') }
+        { name: "SAP (ERP) & SI Governance", level: t('skills.levels.advanced') },
+        { name: "Product Ownership & Backlog", level: t('skills.levels.expert') },
+        { name: "Roadmap Stratégique & KPI", level: t('skills.levels.expert') },
+        { name: "Agile / Scrum / Kanban", level: t('skills.levels.expert') },
+        { name: "Cadrage & Cahier des charges", level: t('skills.levels.advanced') },
+        { name: "Conduite du changement & UAT", level: t('skills.levels.advanced') }
+      ]
+    },
+    {
+      icon: Bot,
+      title: t('skills.categories.ai'),
+      color: "text-purple-500 bg-purple-500/10",
+      skills: [
+        { name: "Systèmes RAG (Retrieval-Augmented)", level: t('skills.levels.advanced') },
+        { name: "LangChain & LlamaIndex", level: t('skills.levels.advanced') },
+        { name: "Bases Vectorielles (Vector DB)", level: t('skills.levels.advanced') },
+        { name: "LLMs & Fact-Checking", level: t('skills.levels.advanced') },
+        { name: "Python, FastAPI & NLP", level: t('skills.levels.expert') },
+        { name: "Computer Vision (OpenCV)", level: t('skills.levels.intermediate') }
       ]
     },
     {
       icon: Globe,
       title: t('skills.categories.web'),
-      color: "text-green-500",
+      color: "text-emerald-500 bg-emerald-500/10",
       skills: [
-          { name: "Angular", level: t('skills.levels.expert') },
-        { name: "React.js & Next.js", level: t('skills.levels.beginner') },
-        { name: "TypeScript", level: t('skills.levels.advanced') },
+        { name: "Angular (RxJS)", level: t('skills.levels.expert') },
+        { name: "TypeScript & JavaScript", level: t('skills.levels.expert') },
+        { name: "React.js & Next.js", level: t('skills.levels.advanced') },
         { name: "Node.js & Express", level: t('skills.levels.advanced') },
-          { name: "SpringBoot(java)", level: t('skills.levels.advanced') },
+        { name: "Java & SpringBoot", level: t('skills.levels.advanced') },
+        { name: "Architectures Microservices & REST", level: t('skills.levels.advanced') }
       ]
     },
     {
       icon: Database,
       title: t('skills.categories.database'),
-      color: "text-purple-500",
+      color: "text-amber-500 bg-amber-500/10",
       skills: [
-        { name: "Firebase", level: t('skills.levels.intermediate') },
         { name: "MongoDB", level: t('skills.levels.advanced') },
-        { name: "PostgreSQL", level: t('skills.levels.beginner') },
+        { name: "MySQL & PostgreSQL", level: t('skills.levels.advanced') },
+        { name: "Docker & Containerisation", level: t('skills.levels.advanced') },
+        { name: "CI/CD & DevOps Pipelines", level: t('skills.levels.intermediate') },
+        { name: "Keycloak (IAM / Sécurité)", level: t('skills.levels.advanced') },
+        { name: "Firebase & Cloud Services", level: t('skills.levels.intermediate') }
       ]
     },
     {
-      icon: Cloud,
-      title: t('skills.categories.cloud'),
-      color: "text-orange-500",
+      icon: Cpu,
+      title: "Robotique & Manufacturing",
+      color: "text-rose-500 bg-rose-500/10",
       skills: [
-        { name: "AWS Services", level: t('skills.levels.intermediate') },
-        { name: "Docker", level: t('skills.levels.advanced') },
-        { name: "CI/CD", level: t('skills.levels.intermediate') },
-        { name: "Kubernetes", level: t('skills.levels.beginner') }
+        { name: "Logiciels Propriétaires Manufacturing", level: t('skills.levels.advanced') },
+        { name: "Optimisation Process Industriels", level: t('skills.levels.advanced') },
+        { name: "ROS1 / ROS2 & Gazebo", level: t('skills.levels.intermediate') },
+        { name: "Robotique Mobile (Tiago)", level: t('skills.levels.intermediate') },
+        { name: "Simulation & Asservissement", level: t('skills.levels.intermediate') }
       ]
     },
     {
-      icon: Code2,
+      icon: Wrench,
       title: t('skills.categories.tools'),
-      color: "text-red-500",
+      color: "text-cyan-500 bg-cyan-500/10",
       skills: [
-        { name: "Git & GitHub", level: t('skills.levels.advanced') },
-        { name: "REST & GraphQL", level: t('skills.levels.intermediate') },
-        { name: "Jest & Testing", level: t('skills.levels.beginner') },
-        { name: "Webpack & Vite", level: t('skills.levels.beginner') }
-      ]
-    },
-    {
-      icon: Palette,
-      title: t('skills.categories.design'),
-      color: "text-pink-500",
-      skills: [
-        { name: "ROS1 & ROS2", level: t('skills.levels.beginner') },
-        { name: "OpenCV", level: t('skills.levels.beginner') },
-        { name: "ev3", level: t('skills.levels.beginner') },
-        { name: "Gazebo", level: t('skills.levels.beginner') },
+        { name: "Jira & Confluence", level: t('skills.levels.expert') },
+        { name: "MS Project & Excel Avancé", level: t('skills.levels.advanced') },
+        { name: "Git, GitHub & GitLab", level: t('skills.levels.expert') },
+        { name: "Postman & API Testing", level: t('skills.levels.advanced') },
+        { name: "Linux / Shell Scripting", level: t('skills.levels.advanced') }
       ]
     }
   ];
@@ -90,78 +100,103 @@ const Skills = () => {
   const getLevelColor = (level: string) => {
     switch (level) {
       case t('skills.levels.expert'):
-        return "bg-green-500/10 text-green-700 dark:text-green-400";
+        return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
       case t('skills.levels.advanced'):
-        return "bg-blue-500/10 text-blue-700 dark:text-blue-400";
+        return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
       case t('skills.levels.intermediate'):
-        return "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400";
-      case t('skills.levels.beginner'):
-        return "bg-gray-500/10 text-gray-700 dark:text-gray-400";
+        return "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20";
       default:
-        return "bg-gray-500/10 text-gray-700 dark:text-gray-400";
+        return "bg-secondary text-muted-foreground border-border/50";
     }
   };
 
   return (
-    <section id="skills" className="section-padding">
-      <div className="container-wide">
+    <section id="skills" className="section-padding relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container-wide relative z-10">
         <div 
           ref={elementRef}
           className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">{t('skills.title')}</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{t('skills.title')}</span>
+            </div>
+            <h2 className="heading-lg mb-4">{t('skills.subtitle')}</h2>
+            <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
               {t('skills.description')}
             </p>
           </div>
 
+          {/* Categories Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
-              <Card key={index} className="card-professional p-6 hover:scale-[1.02] transition-transform group cursor-pointer relative">
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                </div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-lg bg-secondary ${category.color}`}>
+              <Card 
+                key={index} 
+                className="card-professional p-6 hover:scale-[1.02] transition-all duration-300 group border-border/60 hover:border-primary/40"
+              >
+                {/* Category Header */}
+                <div className="flex items-center gap-3.5 mb-6">
+                  <div className={`p-2.5 rounded-xl ${category.color} group-hover:scale-110 transition-transform`}>
                     <category.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-semibold text-lg">{category.title}</h3>
+                  <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                    {category.title}
+                  </h3>
                 </div>
 
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <Badge variant="secondary" className={getLevelColor(skill.level)}>
+                {/* Skills List */}
+                <div className="space-y-3">
+                  {category.skills.map((skill, skillIdx) => (
+                    <div 
+                      key={skillIdx} 
+                      className="flex items-center justify-between gap-2 p-2 rounded-lg bg-secondary/40 hover:bg-secondary/70 transition-colors"
+                    >
+                      <span className="text-xs sm:text-sm font-medium text-foreground/90">
+                        {skill.name}
+                      </span>
+                      <Badge 
+                        variant="outline" 
+                        className={`text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-md ${getLevelColor(skill.level)}`}
+                      >
                         {skill.level}
                       </Badge>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Additional Skills */}
-        <div className="mt-16 text-center">
-          <h3 className="heading-md mb-8">{t('skills.otherSkills')}</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "Agile/Scrum", "Jira", "Slack", "Notion", "Postman", 
-              "Linux/Unix", "Shell Scripting", "API Design", "Microservices",
-              "PWA", "SEO", "Analytics", "A/B Testing"
-            ].map((skill, index) => (
-              <Badge key={index} variant="outline" className="px-3 py-1 hover:scale-105 transition-transform">
-                {skill}
-              </Badge>
+                  ))}
+                </div>
+              </Card>
             ))}
           </div>
-        </div>
+
+          {/* Soft Skills & Methods Badges */}
+          <div className="mt-16 text-center max-w-4xl mx-auto">
+            <h3 className="heading-md text-xl mb-6">{t('skills.otherSkills')}</h3>
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {[
+                "Product Ownership", "SAP S/4HANA & ECC", "Gouvernance des SI",
+                "Gestion de Roadmap", "Sprint Planning & Retrospectives",
+                "Conduite du Changement", "Communication IT / Métiers",
+                "Design de RAG & Vector Search", "Prompt Engineering",
+                "Clean Architecture", "PWA (Progressive Web Apps)",
+                "Lean Manufacturing", "Audit & Qualité Logicielle",
+                "Esprit d'équipe & Leadership"
+              ].map((item, index) => (
+                <div 
+                  key={index} 
+                  className="px-3.5 py-1.5 rounded-xl glass border border-border/60 hover:border-primary/50 text-xs sm:text-sm font-medium text-foreground hover:scale-105 transition-all shadow-sm cursor-default"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

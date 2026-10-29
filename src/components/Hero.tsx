@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Download, Eye, MapPin, Phone, Mail, ChevronDown } from "lucide-react";
+import { Download, Eye, Phone, Mail, ChevronDown, Sparkles, Building2, GraduationCap, ArrowUpRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import profileImage from "@/assets/profile-image.jpg";
 
@@ -13,120 +13,209 @@ const Hero = () => {
         aboutSection?.scrollIntoView({ behavior: "smooth" });
     };
 
-    // Fonction pour scroller vers la section projets
     const handleScrollToProjects = () => {
         const projectsSection = document.getElementById("projects");
         projectsSection?.scrollIntoView({ behavior: "smooth" });
     };
 
-    // Fonction pour télécharger le CV
     const handleDownloadCV = () => {
-        // Chemin vers le fichier PDF dans le dossier public
         const cvUrl = '/CV_Forester steeven_yiemtsa.pdf';
-
-        // Créer un lien temporaire pour le téléchargement
         const link = document.createElement('a');
         link.href = cvUrl;
-        link.download = 'CV_Forester steeven_yiemtsa.pdf'; // Nom du fichier téléchargé
+        link.download = 'CV_Forester steeven_yiemtsa.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
 
     return (
-        <section id="home" className="min-h-screen flex items-center justify-center relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/30 to-background"></div>
+        <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16">
+            {/* Mesh gradient background */}
+            <div className="absolute inset-0 mesh-gradient pointer-events-none" />
+            
+            {/* Animated glowing orbs */}
+            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-float-slow pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/15 rounded-full blur-3xl animate-float pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="container-wide section-padding relative z-10">
+            <div className="container-wide section-padding relative z-10 w-full">
                 <div
                     ref={elementRef}
-                    className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center transition-all duration-1000 ${
+                    className={`grid lg:grid-cols-12 gap-12 lg:gap-8 items-center transition-all duration-1000 ${
                         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                     }`}
                 >
-                    {/* Content */}
-                    <div className="space-y-8 text-center lg:text-left">
-                        <div className="space-y-4">
-                            <h1 className="heading-xl">
-                                <span className="text-gradient">YIEMTSA STEEVEN</span>
+                    {/* Content Column (7 cols) */}
+                    <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        {/* Status Pills */}
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary shadow-sm hover:scale-105 transition-transform cursor-default">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                </span>
+                                <span>{t('hero.badge')}</span>
+                            </div>
+
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/80 text-xs font-medium text-muted-foreground border border-border/50">
+                                <Building2 className="w-3.5 h-3.5 text-accent" />
+                                <span>NAOS</span>
+                                <span className="text-border">•</span>
+                                <GraduationCap className="w-3.5 h-3.5 text-primary" />
+                                <span>GEM</span>
+                            </div>
+                        </div>
+
+                        {/* Main Headings */}
+                        <div className="space-y-3">
+                            <h1 className="heading-xl tracking-tight">
+                                <span className="text-foreground">STEEVEN </span>
+                                <span className="text-gradient">YIEMTSA</span>
                             </h1>
-                            <h2 className="text-xl lg:text-2xl text-muted-foreground font-medium">
-                                {t('hero.title')}
-                            </h2>
-                            <p className="text-lg text-muted-foreground max-w-lg">
+                            <div className="space-y-1.5">
+                                <h2 className="text-2xl lg:text-3xl font-bold text-foreground/90">
+                                    {t('hero.title')}
+                                </h2>
+                                <p className="text-base lg:text-lg text-primary font-medium flex items-center justify-center lg:justify-start gap-2">
+                                    <GraduationCap className="w-5 h-5 shrink-0" />
+                                    <span>{t('hero.subtitle')}</span>
+                                </p>
+                            </div>
+                            <p className="text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed pt-2">
                                 {t('hero.description')}
                             </p>
                         </div>
 
-                        {/* Contact Info */}
-                        <div className="space-y-3 text-sm text-muted-foreground">
-                            <div className="flex items-center justify-center lg:justify-start gap-2">
-                                {/*<MapPin className="w-4 h-4 text-primary" />*/}
-                                {/*<span>{t('hero.location')}</span>*/}
+                        {/* Quick Trust Badges */}
+                        <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto lg:mx-0 pt-2">
+                            <div className="p-3 rounded-xl glass border border-border/40 text-center hover:border-primary/40 transition-colors">
+                                <div className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Poste Actuel</div>
+                                <div className="text-sm font-bold text-foreground mt-0.5">SAP Product Mgr</div>
+                                <div className="text-xs text-primary font-medium">@ NAOS</div>
                             </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-start gap-2 sm:gap-6">
-                                <div className="flex items-center gap-2">
-                                    <Phone className="w-4 h-4 text-primary" />
-                                    <span>{t('hero.phone')}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-primary" />
-                                    <span>{t('hero.email')}</span>
-                                </div>
+                            <div className="p-3 rounded-xl glass border border-border/40 text-center hover:border-primary/40 transition-colors">
+                                <div className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Formation</div>
+                                <div className="text-sm font-bold text-foreground mt-0.5">Master SI & PM</div>
+                                <div className="text-xs text-primary font-medium">@ GEM</div>
+                            </div>
+                            <div className="p-3 rounded-xl glass border border-border/40 text-center hover:border-primary/40 transition-colors">
+                                <div className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Track Record</div>
+                                <div className="text-sm font-bold text-foreground mt-0.5">IA & Manufacturing</div>
+                                <div className="text-xs text-primary font-medium">Capgemini • Stellantis</div>
                             </div>
                         </div>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        {/* Contact Chips */}
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm text-muted-foreground pt-1">
+                            <a
+                                href={`mailto:${t('hero.email')}`}
+                                className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg glass border border-border/50 hover:text-primary hover:border-primary/40 transition-all"
+                            >
+                                <Mail className="w-4 h-4 text-primary shrink-0" />
+                                <span>{t('hero.email')}</span>
+                            </a>
+                            <a
+                                href={`tel:${t('hero.phone').replace(/\s+/g, '')}`}
+                                className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg glass border border-border/50 hover:text-primary hover:border-primary/40 transition-all"
+                            >
+                                <Phone className="w-4 h-4 text-primary shrink-0" />
+                                <span>{t('hero.phone')}</span>
+                            </a>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start pt-2">
                             <Button
-                                variant="hero"
                                 size="lg"
-                                className="rounded-xl hover:scale-105 transition-transform"
+                                className="rounded-xl bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-right text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 transition-all duration-500 hover:scale-[1.02] group gap-2"
                                 onClick={handleScrollToProjects}
                             >
-                                <Eye className="w-5 h-5" />
-                                {t('hero.cta.projects')}
+                                <Eye className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                                <span>{t('hero.cta.projects')}</span>
+                                <Sparkles className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
                             </Button>
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="rounded-xl hover:scale-105 transition-transform"
+                                className="rounded-xl glass border-border/70 hover:bg-primary/5 hover:border-primary/40 hover:text-primary transition-all duration-300 hover:scale-[1.02] gap-2"
                                 onClick={handleDownloadCV}
                             >
-                                <Download className="w-5 h-5" />
-                                {t('hero.cta.download')}
+                                <Download className="w-5 h-5 text-primary" />
+                                <span>{t('hero.cta.download')}</span>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="lg"
+                                className="rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary/60 gap-1.5"
+                                onClick={() => {
+                                    const expEl = document.getElementById("experience");
+                                    expEl?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                            >
+                                <span>Voir mon parcours</span>
+                                <ArrowUpRight className="w-4 h-4" />
                             </Button>
                         </div>
                     </div>
 
-                    {/* Profile Image */}
-                    <div className="flex justify-center lg:justify-end">
-                        <div className="relative">
-                            <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden card-professional">
+                    {/* Visual / Image Column (5 cols) */}
+                    <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                        <div className="relative group max-w-xs sm:max-w-sm lg:max-w-md w-full">
+                            {/* Ambient gradient glow */}
+                            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 via-accent/30 to-primary/20 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-700 opacity-70 group-hover:opacity-100" />
+                            
+                            {/* Circular profile container */}
+                            <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden ring-4 ring-background/80 shadow-2xl transition-all duration-700 group-hover:scale-[1.02]">
                                 <img
                                     src={profileImage}
                                     alt={t('hero.imageAlt')}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-30 group-hover:opacity-10 transition-opacity duration-500" />
                             </div>
-                            {/* Decorative elements */}
-                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse"></div>
-                            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent rounded-full animate-pulse animation-delay-75"></div>
+                            
+                            {/* Floating Micro-Badge Top Right */}
+                            <div className="absolute -top-2 right-4 sm:right-6 glass px-3.5 py-2 rounded-2xl shadow-lg border border-border/60 animate-float-slow flex items-center gap-2">
+                                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+                                    SAP
+                                </div>
+                                <div className="text-left">
+                                    <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Product Mgr</div>
+                                    <div className="text-xs font-semibold text-foreground">NAOS</div>
+                                </div>
+                            </div>
+
+                            {/* Floating Micro-Badge Bottom Left */}
+                            <div className="absolute -bottom-2 left-4 sm:left-6 glass px-3.5 py-2 rounded-2xl shadow-lg border border-border/60 animate-float flex items-center gap-2">
+                                <div className="w-7 h-7 rounded-lg bg-accent/15 flex items-center justify-center text-accent font-bold text-xs">
+                                    GEM
+                                </div>
+                                <div className="text-left">
+                                    <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Master SI & PM</div>
+                                    <div className="text-xs font-semibold text-foreground">Grenoble EM</div>
+                                </div>
+                            </div>
+
+                            {/* Floating Decorative Dots */}
+                            <div className="absolute top-1/2 -left-3 w-4 h-4 bg-primary/40 rounded-full blur-[1px] animate-pulse" />
+                            <div className="absolute top-1/4 -right-2 w-3 h-3 bg-accent/40 rounded-full blur-[1px] animate-pulse" />
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
                 <button
                     onClick={handleScrollToNext}
-                    className="text-muted-foreground hover:text-primary transition-[var(--transition)] animate-bounce"
+                    className="group flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-all duration-300"
                     aria-label={t('hero.scrollLabel')}
                 >
-                    <div className="flex flex-col items-center gap-2">
-                        <span className="text-sm">{t('hero.scrollText')}</span>
-                        <ChevronDown className="w-5 h-5" />
+                    <span className="text-[11px] font-semibold tracking-wider uppercase opacity-70 group-hover:opacity-100 transition-opacity">
+                        {t('hero.scrollText')}
+                    </span>
+                    <div className="w-5 h-8 rounded-full border-2 border-muted-foreground/30 group-hover:border-primary/60 transition-colors flex justify-center pt-1.5">
+                        <div className="w-1 h-2 bg-primary rounded-full animate-bounce" />
                     </div>
                 </button>
             </div>
