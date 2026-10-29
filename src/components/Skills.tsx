@@ -111,7 +111,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
+    <section id="skills" className="section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background glow */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -140,7 +140,7 @@ const Skills = () => {
             {skillCategories.map((category, index) => (
               <Card 
                 key={index} 
-                className="card-professional p-6 hover:scale-[1.02] transition-all duration-300 group border-border/60 hover:border-primary/40"
+                className="card-professional p-5 sm:p-6 hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 group border-border/60 hover:border-primary/40"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3.5 mb-6">

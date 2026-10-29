@@ -6,12 +6,10 @@ import {
   Target, 
   Lightbulb, 
   Cpu, 
-  Database, 
   Workflow, 
   CheckCircle2, 
   Sparkles,
-  Layers,
-  ArrowRight
+  Layers
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -80,7 +78,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden bg-secondary/30">
+    <section id="about" className="section-padding relative overflow-hidden bg-secondary/30 px-4 sm:px-6 lg:px-8">
       {/* Background accents */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -93,53 +91,53 @@ const About = () => {
           }`}
         >
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-3 sm:mb-4">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{t('about.title')}</span>
             </div>
-            <h2 className="heading-lg mb-4">{t('about.subtitle')}</h2>
-            <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+            <h2 className="heading-lg mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{t('about.subtitle')}</h2>
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
               {t('about.description')}
             </p>
           </div>
 
           {/* 3 Pillars of Expertise */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-16">
             {pillars.map((pillar, index) => (
               <Card 
                 key={index} 
-                className="card-professional p-6 relative overflow-hidden group hover:scale-[1.02] transition-all duration-300 border-border/60"
+                className="card-professional p-5 sm:p-6 relative overflow-hidden group hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 border-border/60"
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pillar.accent} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                  <pillar.icon className="w-6 h-6" />
+                <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${pillar.accent} flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform`}>
+                  <pillar.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors">
                     {pillar.title}
                   </h3>
-                  <Badge variant="secondary" className="text-xs shrink-0 font-medium">
+                  <Badge variant="secondary" className="text-[11px] sm:text-xs shrink-0 font-medium">
                     {pillar.badge}
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                   {pillar.description}
                 </p>
               </Card>
             ))}
           </div>
 
-          {/* Stats Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {/* Stats Bar (Mobile Optimized 3-columns) */}
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-6 mb-10 sm:mb-16">
             {stats.map((stat, index) => (
-              <Card key={index} className="card-professional p-6 text-center border-border/50 hover:border-primary/40 transition-colors">
-                <div className="text-4xl lg:text-5xl font-extrabold text-gradient mb-2 tracking-tight">
+              <Card key={index} className="card-professional p-3.5 sm:p-6 text-center border-border/50 hover:border-primary/40 transition-colors">
+                <div className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gradient mb-1 sm:mb-2 tracking-tight">
                   {stat.number}
                 </div>
-                <div className="font-semibold text-foreground text-base mb-1">
+                <div className="font-semibold text-foreground text-xs sm:text-base mb-0.5 sm:mb-1 leading-snug">
                   {stat.label}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">
                   {stat.description}
                 </div>
               </Card>
@@ -147,19 +145,19 @@ const About = () => {
           </div>
 
           {/* Technical & Functional Matrix */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-16">
             {/* Functional & Methodologies */}
-            <Card className="card-professional p-7 border-border/60">
-              <div className="flex items-center gap-3 mb-6">
+            <Card className="card-professional p-5 sm:p-7 border-border/60">
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                   <Workflow className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="heading-md text-xl">{t('about.methodologies')}</h3>
+                  <h3 className="heading-md text-lg sm:text-xl">{t('about.methodologies')}</h3>
                   <p className="text-xs text-muted-foreground">Management de projet & Gouvernance SI</p>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
                 {[
                   "Product Ownership & Backlog",
                   "Gouvernance SAP & ERP",
@@ -170,7 +168,7 @@ const About = () => {
                   "Industrial Manufacturing (Usines)",
                   "Audit & Alignement Stratégique IT"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
                     <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
@@ -179,17 +177,17 @@ const About = () => {
             </Card>
 
             {/* Technical Expertise */}
-            <Card className="card-professional p-7 border-border/60">
-              <div className="flex items-center gap-3 mb-6">
+            <Card className="card-professional p-5 sm:p-7 border-border/60">
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
                 <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center text-accent">
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="heading-md text-xl">{t('about.specialties')}</h3>
+                  <h3 className="heading-md text-lg sm:text-xl">{t('about.specialties')}</h3>
                   <p className="text-xs text-muted-foreground">Architecture, IA & Technologies</p>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
                 {[
                   "Systèmes RAG & LLMs (LangChain)",
                   "Python, FastAPI & NLP",
@@ -200,7 +198,7 @@ const About = () => {
                   "MongoDB, MySQL & PostgreSQL",
                   "Docker, CI/CD & Keycloak"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
                     <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
@@ -210,14 +208,14 @@ const About = () => {
           </div>
 
           {/* Core Values */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="card-professional p-6 text-center hover:scale-[1.02] transition-all border-border/50">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 text-primary">
-                  <value.icon className="w-6 h-6" />
+              <Card key={index} className="card-professional p-5 sm:p-6 text-center hover:scale-[1.02] transition-all border-border/50">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 text-primary">
+                  <value.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-foreground">{value.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                <h3 className="font-semibold text-base sm:text-lg mb-1.5 sm:mb-2 text-foreground">{value.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{value.description}</p>
               </Card>
             ))}
           </div>

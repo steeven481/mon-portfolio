@@ -23,13 +23,13 @@ const resources = {
         subtitle: 'Master Management de Projet Numérique & SI (Grenoble Ecole de Management)',
         description: 'Alliant expertise technique de pointe (IA, RAG, développement full-stack) et pilotage stratégique de projets SI d\'envergure (SAP, ERP, manufacturing industriel).',
         location: 'France',
-        phone: '(+33) 74 54 21 660',
-        email: 'steeven.yiemtsa-fopa@utbm.fr',
+        contactViaForm: 'Contact via formulaire & LinkedIn',
         imageAlt: 'Photo de profil - Steeven Yiemtsa',
         scrollText: 'Découvrir mon univers',
         scrollLabel: 'Faire défiler vers le bas',
         cta: {
           projects: 'Explorer mes projets',
+          contact: 'Me contacter',
           download: 'Télécharger mon CV'
         }
       },
@@ -218,14 +218,7 @@ const resources = {
         liveDemo: 'Démo en ligne',
         viewCode: 'Consulter le code',
         keyFeatures: 'Fonctionnalités clés',
-        techChallenges: 'Défis techniques relevés',
-        ragProject: {
-          title: 'Système RAG Politique Fiable',
-          category: 'IA Générative & RAG',
-          description: 'Pipeline RAG haute fidélité assurant l\'extraction, la vérification et la synthèse d\'informations politiques avec traçabilité intégrale des sources.',
-          role: 'Ingénieur IA (Capgemini)',
-          tech: ['Python', 'LangChain', 'LLM', 'Vector DB', 'FastAPI', 'Fact-Checking']
-        }
+        techChallenges: 'Défis techniques relevés'
       },
       competitions: {
         title: 'Compétitions & Hackathons',
@@ -259,20 +252,24 @@ const resources = {
         title: 'Me Contacter',
         subtitle: 'Échangeons autour de vos projets ou d\'opportunités professionnelles',
         description: 'Disponible pour échanger sur le product management SI, l\'IA appliquée et les initiatives technologiques innovantes.',
-        info: 'Coordonnées directes',
-        followMe: 'Réseaux & Plateformes',
+        info: 'Informations clés',
+        followMe: 'Réseaux professionnels',
         availability: 'Statut professionnel',
-        availabilityText: 'En poste chez NAOS (SAP IT Product Manager) & Master à GEM. Ouvert au networking et aux échanges technologiques.',
+        availabilityText: 'En poste chez NAOS (SAP IT Product Manager) & Master à GEM. Ouvert au networking et aux échanges professionnels via le formulaire ci-dessous ou sur LinkedIn.',
         availableNow: 'Actif & Ouvert aux échanges',
+        locationLabel: 'Localisation',
+        locationValue: 'France (Mobilité nationale)',
+        linkedinLabel: 'Profil LinkedIn',
+        linkedinValue: 'Steeven Yiemtsa',
         form: {
           title: 'Envoyez-moi un message',
           firstName: 'Prénom',
           lastName: 'Nom',
-          email: 'Email',
-          subject: 'Sujet',
+          email: 'Votre Email',
+          subject: 'Sujet de votre message',
           message: 'Votre message',
           send: 'Transmettre le message',
-          response: 'Je vous réponds généralement sous 24 à 48 heures.',
+          response: 'Je vous réponds directement par retour de mail sous 24 à 48 heures.',
           placeholders: {
             firstName: 'Jean',
             lastName: 'Dupont',
@@ -307,13 +304,13 @@ const resources = {
         subtitle: 'Master in Digital Project Management & IS (Grenoble Ecole de Management)',
         description: 'Bridging cutting-edge technical expertise (AI, RAG, full-stack architecture) with strategic enterprise IT leadership (SAP, ERP, manufacturing).',
         location: 'France',
-        phone: '(+33) 74 54 21 660',
-        email: 'steeven.yiemtsa-fopa@utbm.fr',
+        contactViaForm: 'Reach out via Form & LinkedIn',
         imageAlt: 'Profile photo - Steeven Yiemtsa',
         scrollText: 'Explore my journey',
         scrollLabel: 'Scroll down',
         cta: {
           projects: 'Explore my projects',
+          contact: 'Contact me',
           download: 'Download Resume'
         }
       },
@@ -502,14 +499,7 @@ const resources = {
         liveDemo: 'Live Demo',
         viewCode: 'Source Code',
         keyFeatures: 'Key Capabilities',
-        techChallenges: 'Engineering Challenges Solved',
-        ragProject: {
-          title: 'Trusted Political RAG System',
-          category: 'Generative AI & RAG',
-          description: 'High-precision RAG pipeline ensuring accurate factual political retrieval and synthesis with complete source auditability.',
-          role: 'AI Engineer (Capgemini)',
-          tech: ['Python', 'LangChain', 'LLM', 'Vector DB', 'FastAPI', 'Fact-Checking']
-        }
+        techChallenges: 'Engineering Challenges Solved'
       },
       competitions: {
         title: 'Competitions & Hackathons',
@@ -543,20 +533,24 @@ const resources = {
         title: 'Get In Touch',
         subtitle: 'Let\'s discuss projects, collaborations, or tech opportunities',
         description: 'Open to connecting on enterprise IS product management, applied AI systems, and digital transformation.',
-        info: 'Direct Contact Info',
-        followMe: 'Connect & Follow',
+        info: 'Key Info',
+        followMe: 'Professional Profiles',
         availability: 'Current Status',
-        availabilityText: 'Currently SAP IT Product Manager at NAOS & Master student at GEM. Open to networking and tech exchanges.',
+        availabilityText: 'Currently SAP IT Product Manager at NAOS & Master student at GEM. Open to networking and professional inquiries via the form below or on LinkedIn.',
         availableNow: 'Active & Open to dialogue',
+        locationLabel: 'Location',
+        locationValue: 'France (Nationwide mobility)',
+        linkedinLabel: 'LinkedIn Profile',
+        linkedinValue: 'Steeven Yiemtsa',
         form: {
           title: 'Send a Message',
           firstName: 'First Name',
           lastName: 'Last Name',
-          email: 'Email',
+          email: 'Your Email',
           subject: 'Subject',
           message: 'Your Message',
           send: 'Send Message',
-          response: 'I typically respond within 24 to 48 hours.',
+          response: 'I will reply directly to your email within 24 to 48 hours.',
           placeholders: {
             firstName: 'John',
             lastName: 'Doe',
@@ -591,13 +585,13 @@ const resources = {
         subtitle: 'Master in Digitalem Projektmanagement & IS (Grenoble Ecole de Management)',
         description: 'Kombination aus technischer Spitzenkompetenz (KI, RAG, Full-Stack) und strategischer IT-Projektsteuerung (SAP, ERP, Fertigung).',
         location: 'Frankreich',
-        phone: '(+33) 74 54 21 660',
-        email: 'steeven.yiemtsa-fopa@utbm.fr',
+        contactViaForm: 'Kontakt über Formular & LinkedIn',
         imageAlt: 'Profilbild - Steeven Yiemtsa',
         scrollText: 'Entdecken',
         scrollLabel: 'Nach unten scrollen',
         cta: {
           projects: 'Projekte ansehen',
+          contact: 'Kontaktieren',
           download: 'Lebenslauf herunterladen'
         }
       },
@@ -779,14 +773,7 @@ const resources = {
         liveDemo: 'Live-Demo',
         viewCode: 'Code ansehen',
         keyFeatures: 'Wichtige Funktionen',
-        techChallenges: 'Gelöste technische Herausforderungen',
-        ragProject: {
-          title: 'Verlässliches Politisches RAG-System',
-          category: 'Generative KI & RAG',
-          description: 'Hochpräzise RAG-Pipeline für verifizierte politische Analysen mit lückenloser Quellentransparenz.',
-          role: 'KI-Ingenieur (Capgemini)',
-          tech: ['Python', 'LangChain', 'LLM', 'Vector DB', 'FastAPI', 'Fact-Checking']
-        }
+        techChallenges: 'Gelöste technische Herausforderungen'
       },
       competitions: {
         title: 'Wettbewerbe & Hackathons',
@@ -820,20 +807,24 @@ const resources = {
         title: 'Kontakt',
         subtitle: 'Lassen Sie uns über Ihre Projekte sprechen',
         description: 'Offen für Austausch über IS-Produktmanagement, angewandte KI und digitale Transformation.',
-        info: 'Kontaktdaten',
-        followMe: 'Netzwerke',
+        info: 'Wichtige Informationen',
+        followMe: 'Berufliche Netzwerke',
         availability: 'Beruflicher Status',
-        availabilityText: 'Aktuell SAP IT Product Manager bei NAOS & Master-Student an der GEM.',
+        availabilityText: 'Aktuell SAP IT Product Manager bei NAOS & Master-Student an der GEM. Erreichbar über das Kontaktformular oder auf LinkedIn.',
         availableNow: 'Aktiv & Offen für Austausch',
+        locationLabel: 'Standort',
+        locationValue: 'Frankreich (Bundesweite Mobilität)',
+        linkedinLabel: 'LinkedIn-Profil',
+        linkedinValue: 'Steeven Yiemtsa',
         form: {
           title: 'Nachricht senden',
           firstName: 'Vorname',
           lastName: 'Nachname',
-          email: 'E-Mail',
+          email: 'Ihre E-Mail',
           subject: 'Betreff',
           message: 'Ihre Nachricht',
           send: 'Absenden',
-          response: 'Ich antworte in der Regel innerhalb von 24-48 Stunden.',
+          response: 'Ich antworte in der Regel innerhalb von 24-48 Stunden per E-Mail.',
           placeholders: {
             firstName: 'Max',
             lastName: 'Mustermann',

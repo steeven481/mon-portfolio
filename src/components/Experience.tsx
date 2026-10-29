@@ -13,8 +13,6 @@ import {
   ArrowRight, 
   Building2, 
   CheckCircle2, 
-  Sparkles,
-  ExternalLink,
   Bot,
   Layers,
   Code2
@@ -133,7 +131,7 @@ const Experience = () => {
     };
 
     return (
-        <section id="experience" className="section-padding relative overflow-hidden">
+        <section id="experience" className="section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* Background ambient lighting */}
             <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -146,18 +144,18 @@ const Experience = () => {
                     }`}
                 >
                     {/* Header */}
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-4">
+                    <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-primary/20 text-xs font-semibold text-primary mb-3 sm:mb-4">
                             <Briefcase className="w-3.5 h-3.5" />
                             <span>{t('experience.title')}</span>
                         </div>
-                        <h2 className="heading-lg mb-4">{t('experience.subtitle')}</h2>
-                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                        <h2 className="heading-lg mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{t('experience.subtitle')}</h2>
+                        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
                             {t('experience.description')}
                         </p>
 
-                        {/* Filter Tabs */}
-                        <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+                        {/* Filter Tabs - Mobile Touch Friendly */}
+                        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-6 sm:mt-8">
                             {[
                                 { key: 'all', label: t('experience.filterAll') },
                                 { key: 'pm', label: t('experience.filterPM') },
@@ -182,55 +180,62 @@ const Experience = () => {
                     </div>
 
                     {/* Timeline List */}
-                    <div className="relative max-w-4xl mx-auto mt-12">
-                        {/* Center Timeline Spine */}
+                    <div className="relative max-w-4xl mx-auto mt-8 sm:mt-12">
+                        {/* Center Timeline Spine on Desktop */}
                         <div className="hidden md:block absolute left-1/2 -translate-x-px top-2 bottom-6 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent pointer-events-none opacity-40" />
+                        
+                        {/* Left Timeline Spine on Mobile */}
+                        <div className="md:hidden absolute left-4 top-2 bottom-6 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent pointer-events-none opacity-40" />
 
-                        <div className="space-y-8 sm:space-y-12">
+                        <div className="space-y-6 sm:space-y-12">
                             {filteredExperiences.map((exp, index) => {
                                 const isEven = index % 2 === 0;
-                                const achievements = (t(exp.achievementsKey, { returnObjects: true }) as string[]) || [];
 
                                 return (
                                     <div 
                                         key={exp.id}
-                                        className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-10 ${
+                                        className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 sm:gap-6 md:gap-10 ${
                                             isEven ? 'md:flex-row-reverse' : ''
                                         }`}
                                     >
-                                        {/* Timeline Center Node */}
+                                        {/* Timeline Node - Desktop */}
                                         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-background border-2 border-primary items-center justify-center z-10 shadow-lg shadow-primary/20 group">
                                             <exp.icon className="w-4 h-4 text-primary" />
                                         </div>
 
+                                        {/* Timeline Node - Mobile */}
+                                        <div className="md:hidden absolute left-4 -translate-x-1/2 top-6 w-7 h-7 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 shadow-md">
+                                            <exp.icon className="w-3.5 h-3.5 text-primary" />
+                                        </div>
+
                                         {/* Card Half */}
-                                        <div className="w-full md:w-[calc(50%-2.5rem)]">
+                                        <div className="w-full pl-9 sm:pl-10 md:pl-0 md:w-[calc(50%-2.5rem)]">
                                             <Card
                                                 onClick={() => setSelectedExperience(exp)}
-                                                className="card-professional p-6 sm:p-7 cursor-pointer hover:scale-[1.02] hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl group border-border/60"
+                                                className="card-professional p-5 sm:p-7 cursor-pointer hover:scale-[1.02] active:scale-[0.99] hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl group border-border/60"
                                             >
                                                 {/* Card Header */}
-                                                <div className="flex items-start justify-between gap-3 mb-3">
+                                                <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
                                                     <div>
                                                         <div className="flex items-center gap-2 mb-1">
-                                                            <span className="font-bold text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors">
+                                                            <span className="font-bold text-base sm:text-xl text-foreground group-hover:text-primary transition-colors leading-snug">
                                                                 {t(exp.titleKey)}
                                                             </span>
                                                         </div>
-                                                        <div className="text-base font-semibold text-primary flex items-center gap-2">
+                                                        <div className="text-sm sm:text-base font-semibold text-primary flex items-center gap-2">
                                                             <span>{exp.company}</span>
                                                         </div>
                                                     </div>
                                                     <Badge 
                                                         variant="outline" 
-                                                        className={`shrink-0 font-semibold text-xs px-2.5 py-0.5 rounded-full ${getTypeColor(exp.type)}`}
+                                                        className={`shrink-0 font-semibold text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 rounded-full ${getTypeColor(exp.type)}`}
                                                     >
                                                         {exp.type}
                                                     </Badge>
                                                 </div>
 
                                                 {/* Meta: Period & Location */}
-                                                <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-muted-foreground mb-3">
+                                                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-muted-foreground mb-3">
                                                     <div className="flex items-center gap-1.5">
                                                         <Calendar className="w-3.5 h-3.5 text-primary" />
                                                         <span>{exp.startDate} → {exp.endDate === 'Present' ? t('experience.badgePresent') : exp.endDate}</span>
@@ -242,23 +247,23 @@ const Experience = () => {
                                                 </div>
 
                                                 {/* Summary Description */}
-                                                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                                                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                                                     {t(exp.summaryKey)}
                                                 </p>
 
                                                 {/* Tech Tags */}
-                                                <div className="flex flex-wrap gap-1.5 mb-4">
+                                                <div className="flex flex-wrap gap-1.5 mb-3 sm:mb-4">
                                                     {exp.technologies.slice(0, 4).map(tech => (
                                                         <Badge 
                                                             key={tech} 
                                                             variant="secondary" 
-                                                            className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-secondary/80 text-foreground/80"
+                                                            className="text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md bg-secondary/80 text-foreground/80"
                                                         >
                                                             {tech}
                                                         </Badge>
                                                     ))}
                                                     {exp.technologies.length > 4 && (
-                                                        <Badge variant="outline" className="text-[11px] font-medium text-muted-foreground">
+                                                        <Badge variant="outline" className="text-[10px] sm:text-[11px] font-medium text-muted-foreground">
                                                             +{exp.technologies.length - 4}
                                                         </Badge>
                                                     )}
@@ -272,7 +277,7 @@ const Experience = () => {
                                             </Card>
                                         </div>
 
-                                        {/* Spacer for other side */}
+                                        {/* Spacer for other side on Desktop */}
                                         <div className="hidden md:block w-full md:w-[calc(50%-2.5rem)]" />
                                     </div>
                                 );
@@ -283,7 +288,7 @@ const Experience = () => {
 
                 {/* Experience Detail Modal */}
                 <Dialog open={!!selectedExperience} onOpenChange={() => setSelectedExperience(null)}>
-                    <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-6 sm:p-8">
+                    <DialogContent className="w-[95vw] sm:max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-5 sm:p-8">
                         <DialogTitle className="sr-only">
                             {selectedExperience ? t(selectedExperience.titleKey) : "Détails"}
                         </DialogTitle>
@@ -292,39 +297,39 @@ const Experience = () => {
                         </DialogDescription>
 
                         {selectedExperience && (
-                            <div className="space-y-6">
+                            <div className="space-y-5 sm:space-y-6">
                                 {/* Header */}
                                 <div>
-                                    <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                                    <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 mb-2">
                                         <Badge 
                                             variant="outline" 
-                                            className={`font-semibold text-xs px-3 py-1 rounded-full ${getTypeColor(selectedExperience.type)}`}
+                                            className={`font-semibold text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full ${getTypeColor(selectedExperience.type)}`}
                                         >
                                             {selectedExperience.type}
                                         </Badge>
                                         <div className="flex items-center gap-3 text-xs text-muted-foreground font-medium">
                                             <span className="flex items-center gap-1.5">
-                                                <Calendar className="w-4 h-4 text-primary" />
+                                                <Calendar className="w-3.5 h-3.5 text-primary" />
                                                 {selectedExperience.startDate} → {selectedExperience.endDate === 'Present' ? t('experience.badgePresent') : selectedExperience.endDate}
                                             </span>
                                             <span className="flex items-center gap-1.5">
-                                                <MapPin className="w-4 h-4 text-accent" />
+                                                <MapPin className="w-3.5 h-3.5 text-accent" />
                                                 {selectedExperience.location}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+                                    <h3 className="text-xl sm:text-3xl font-extrabold text-foreground tracking-tight">
                                         {t(selectedExperience.titleKey)}
                                     </h3>
-                                    <p className="text-lg font-bold text-primary mt-1">
+                                    <p className="text-base sm:text-lg font-bold text-primary mt-1">
                                         {selectedExperience.company}
                                     </p>
                                 </div>
 
                                 {/* Carousel if images exist */}
                                 {selectedExperience.images.length > 0 && (
-                                    <div className="pt-2">
+                                    <div className="pt-1 sm:pt-2">
                                         <Carousel className="w-full">
                                             <CarouselContent>
                                                 {selectedExperience.images.map((img, idx) => (
@@ -346,26 +351,26 @@ const Experience = () => {
                                 )}
 
                                 {/* Context & Description */}
-                                <div className="space-y-2">
-                                    <h4 className="text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                                <div className="space-y-1.5 sm:space-y-2">
+                                    <h4 className="text-xs sm:text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
                                         <Target className="w-4 h-4 text-primary" />
                                         <span>Contexte & Rôle</span>
                                     </h4>
-                                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                    <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
                                         {t(selectedExperience.descriptionKey)}
                                     </p>
                                 </div>
 
                                 {/* Key Missions & Achievements */}
-                                <div className="space-y-3">
-                                    <h4 className="text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                                <div className="space-y-2 sm:space-y-3">
+                                    <h4 className="text-xs sm:text-sm uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
                                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                                         <span>{t('experience.missions')}</span>
                                     </h4>
-                                    <ul className="space-y-2.5">
+                                    <ul className="space-y-2 sm:space-y-2.5">
                                         {((t(selectedExperience.achievementsKey, { returnObjects: true }) as string[]) || []).map((achievement, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                                            <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 sm:mt-2 shrink-0" />
                                                 <span>{achievement}</span>
                                             </li>
                                         ))}
@@ -373,16 +378,16 @@ const Experience = () => {
                                 </div>
 
                                 {/* Technologies & Tools */}
-                                <div className="space-y-2.5 pt-2">
-                                    <h4 className="text-sm uppercase tracking-wider font-bold text-foreground">
+                                <div className="space-y-2 pt-1 sm:pt-2">
+                                    <h4 className="text-xs sm:text-sm uppercase tracking-wider font-bold text-foreground">
                                         {t('experience.techUsed')}
                                     </h4>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                         {selectedExperience.technologies.map(tech => (
                                             <Badge 
                                                 key={tech} 
                                                 variant="secondary" 
-                                                className="text-xs font-semibold px-3 py-1 rounded-lg"
+                                                className="text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:py-1 rounded-lg"
                                             >
                                                 {tech}
                                             </Badge>

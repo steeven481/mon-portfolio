@@ -245,7 +245,7 @@ const Projects = () => {
     });
 
     return (
-        <section id="projects" className="section-padding relative overflow-hidden">
+        <section id="projects" className="section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* Background lighting */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -329,7 +329,7 @@ const Projects = () => {
                             <Card
                                 key={project.id}
                                 onClick={() => setSelectedProject(project)}
-                                className="card-professional p-6 sm:p-7 cursor-pointer hover:scale-[1.02] transition-all duration-300 group border-border/60 hover:border-primary/50 flex flex-col justify-between"
+                                className="card-professional p-5 sm:p-7 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 group border-border/60 hover:border-primary/50 flex flex-col justify-between"
                             >
                                 <div className="space-y-4">
                                     {/* Category & Status */}
@@ -383,7 +383,7 @@ const Projects = () => {
 
                 {/* Project Detail Dialog */}
                 <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-6 sm:p-8">
+                    <DialogContent className="w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-5 sm:p-8">
                         <DialogTitle className="sr-only">
                             {selectedProject?.title}
                         </DialogTitle>

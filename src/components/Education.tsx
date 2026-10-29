@@ -96,7 +96,7 @@ const Education = () => {
     ];
 
     return (
-        <section id="education" className="section-padding bg-secondary/30 relative overflow-hidden">
+        <section id="education" className="section-padding bg-secondary/30 relative overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* Background lighting */}
             <div className="absolute top-1/3 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-10 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -129,7 +129,7 @@ const Education = () => {
                                 <Card
                                     key={edu.id}
                                     onClick={() => setSelectedEducation(edu)}
-                                    className={`card-professional p-6 sm:p-7 cursor-pointer hover:scale-[1.02] transition-all duration-300 group border-border/60 relative overflow-hidden ${
+                                    className={`card-professional p-5 sm:p-7 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 group border-border/60 relative overflow-hidden ${
                                         edu.isCurrent ? 'ring-2 ring-primary/40 bg-card/95' : ''
                                     }`}
                                 >
@@ -211,7 +211,7 @@ const Education = () => {
 
                 {/* Detail Modal */}
                 <Dialog open={!!selectedEducation} onOpenChange={() => setSelectedEducation(null)}>
-                    <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-6 sm:p-8">
+                    <DialogContent className="w-[95vw] sm:max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-5 sm:p-8">
                         <DialogTitle className="sr-only">
                             {selectedEducation ? t(selectedEducation.degreeKey) : "Formation"}
                         </DialogTitle>

@@ -8,6 +8,7 @@ import Competitions from "@/components/Competitions";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MobileNav from "@/components/MobileNav";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      <MobileNav />
     </div>
   );
 };

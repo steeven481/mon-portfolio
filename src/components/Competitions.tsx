@@ -110,7 +110,7 @@ const Competitions = () => {
     ];
 
     return (
-        <section id="competitions" className="section-padding relative overflow-hidden bg-secondary/30">
+        <section id="competitions" className="section-padding relative overflow-hidden bg-secondary/30 px-4 sm:px-6 lg:px-8">
             {/* Background lighting */}
             <div className="absolute top-1/2 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -140,7 +140,7 @@ const Competitions = () => {
                             <Card
                                 key={competition.id}
                                 onClick={() => setSelectedCompetition(competition)}
-                                className="card-professional p-6 sm:p-7 cursor-pointer hover:scale-[1.02] transition-all duration-300 group border-border/60 hover:border-primary/50 flex flex-col justify-between"
+                                className="card-professional p-5 sm:p-7 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 group border-border/60 hover:border-primary/50 flex flex-col justify-between"
                             >
                                 <div className="space-y-4">
                                     {/* Icon & Rank */}
@@ -209,7 +209,7 @@ const Competitions = () => {
 
                 {/* Competition Detail Dialog */}
                 <Dialog open={!!selectedCompetition} onOpenChange={() => setSelectedCompetition(null)}>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-6 sm:p-8">
+                    <DialogContent className="w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl glass border-border/70 p-5 sm:p-8">
                         <DialogTitle className="sr-only">
                             {selectedCompetition?.title}
                         </DialogTitle>
